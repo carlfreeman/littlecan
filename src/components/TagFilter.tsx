@@ -19,8 +19,8 @@ const TagFilter = ({
       <button
         className={`px-3 py-1 rounded-full text-sm ${
           selectedTag === 'all'
-            ? 'bg-white text-gray-900'
-            : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
+            ? 'bg-white text-black'
+            : 'bg-white/10 text-white hover:bg-white/25'
         }`}
         onClick={() => handleTagChange('all')}
       >
@@ -31,8 +31,8 @@ const TagFilter = ({
           key={tag}
           className={`px-3 py-1 rounded-full text-sm capitalize ${
             selectedTag === tag
-              ? 'bg-white text-gray-900'
-              : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
+              ? 'bg-white text-black'
+              : 'bg-white/15 text-white hover:bg-white/50'
           }`}
           onClick={() => handleTagChange(tag)}
         >

@@ -18,8 +18,8 @@ const SeasonFilter = ({
       <button
         className={`px-3 py-1 rounded-full text-sm ${
           selectedSeason === 'All'
-            ? 'bg-white text-gray-900'
-            : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
+            ? 'bg-white text-black'
+            : 'bg-white/10 text-white hover:bg-white/30'
         }`}
         onClick={() => setSelectedSeason('All')}
       >
@@ -30,8 +30,8 @@ const SeasonFilter = ({
           key={season}
           className={`px-3 py-1 rounded-full text-sm ${
             selectedSeason === season
-              ? 'bg-white text-gray-900'
-              : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
+              ? 'bg-white text-black'
+              : 'bg-white/20 text-white hover:bg-white/50'
           }`}
           onClick={() => setSelectedSeason(season)}
         >

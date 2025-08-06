@@ -5,7 +5,7 @@ import '../styles/globals.css';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <div className={`${GeistSans.className} min-h-screen flex flex-col bg-gray-900`}>
+    <div className={`${GeistSans.className} min-h-screen flex flex-col bg-black`}>
       <Header />
       <main className="flex-grow">
         <Component {...pageProps} />
