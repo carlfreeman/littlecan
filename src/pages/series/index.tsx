@@ -1,12 +1,14 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import PhotoOverlay from '../../components/PhotoOverlay';
 import { getSeasons, getPhotosBySeason, Photo } from '../../utils/photoUtils';
 
 export default function Series() {
   const [seasons, setSeasons] = useState<string[]>([]);
   const [selectedSeason, setSelectedSeason] = useState<string | null>(null);
   const [seasonPhotos, setSeasonPhotos] = useState<Photo[]>([]);
+  const [selectedPhoto, setSelectedPhoto] = useState<Photo | null>(null);
 
   useEffect(() => {
     const fetchSeasons = async () => {
@@ -33,8 +35,16 @@ export default function Series() {
 
   return (
     <div className="container mx-auto px-4 py-8">
+      {/* Photo overlay */}
+      {selectedPhoto && (
+        <PhotoOverlay 
+          photo={selectedPhoto} 
+          onClose={() => setSelectedPhoto(null)} 
+        />
+      )}
+
       <div className="mb-12 text-center">
-        <h1 className="text-3xl md:text-4xl font-bold mb-4 font-geist">Series</h1>
+        <h1 className="text-3xl md:text-4xl font-bold mb-4">Series</h1>
         <p className="text-gray-400 max-w-2xl mx-auto">
           Collections organized by seasons, each representing a cohesive body of work
           with a distinct narrative and visual language.
@@ -68,14 +78,17 @@ export default function Series() {
           
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             {seasonPhotos.slice(0, 6).map(photo => (
-              <div key={photo.id} className="group relative">
+              <div 
+                key={photo.id} 
+                className="group relative cursor-pointer"
+                onClick={() => setSelectedPhoto(photo)}
+              >
                 <div className="aspect-square overflow-hidden rounded-lg">
                   <Image
                     src={`/photos/${photo.id}.webp`}
                     alt={photo.title}
-                    layout="fill"
-                    objectFit="cover"
-                    className="transition-transform duration-500 group-hover:scale-110"
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-110"
                   />
                 </div>
                 <div className="mt-3">

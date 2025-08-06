@@ -1,10 +1,11 @@
-import { useEffect, useState } from 'react';
-import Image from 'next/image';
+import { useState, useEffect } from 'react';
 import PhotoCard from '../components/PhotoCard';
+import PhotoOverlay from '../components/PhotoOverlay';
 import { getRecentPhotos, Photo } from '../utils/photoUtils';
 
 export default function Home() {
   const [recentPhotos, setRecentPhotos] = useState<Photo[]>([]);
+  const [selectedPhoto, setSelectedPhoto] = useState<Photo | null>(null);
 
   useEffect(() => {
     const fetchPhotos = async () => {
@@ -17,6 +18,14 @@ export default function Home() {
 
   return (
     <div className="container mx-auto px-4 py-8">
+      {/* Overlay when photo is selected */}
+      {selectedPhoto && (
+        <PhotoOverlay 
+          photo={selectedPhoto} 
+          onClose={() => setSelectedPhoto(null)} 
+        />
+      )}
+
       <section className="mb-16 text-center">
         <div className="max-w-3xl mx-auto">
           <h1 className="text-4xl md:text-5xl font-bold mb-6">
@@ -36,7 +45,11 @@ export default function Home() {
         {recentPhotos.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {recentPhotos.map(photo => (
-              <PhotoCard key={photo.id} photo={photo} />
+              <PhotoCard 
+                key={photo.id} 
+                photo={photo} 
+                onClick={() => setSelectedPhoto(photo)}
+              />
             ))}
           </div>
         ) : (
