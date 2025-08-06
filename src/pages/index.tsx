@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 import PhotoCard from '../components/PhotoCard';
 import PhotoOverlay from '../components/PhotoOverlay';
 import { getRecentPhotos, Photo } from '../utils/photoUtils';

@@ -35,18 +35,6 @@ const PhotoOverlay = ({ photo, onClose }: PhotoOverlayProps) => {
         className="max-w-6xl w-full max-h-[90vh] overflow-auto bg-gray-900 rounded-xl border border-gray-700 shadow-2xl"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="sticky top-0 bg-gray-900 z-10 p-4 border-b border-gray-800 flex justify-between items-center">
-          <h2 className="text-2xl font-bold">{photo.title}</h2>
-          <button 
-            onClick={onClose}
-            className="text-gray-400 hover:text-white p-2 transition-colors"
-            aria-label="Close"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
-        </div>
         
         <div className="p-4 md:p-8 grid grid-cols-1 lg:grid-cols-2 gap-8">
           <div className="relative aspect-square w-full">
@@ -60,6 +48,18 @@ const PhotoOverlay = ({ photo, onClose }: PhotoOverlayProps) => {
           </div>
           
           <div className="space-y-6">
+            <div className="sticky top-0 bg-gray-900 z-10 p-2 border-b border-gray-800 flex justify-between items-center">
+              <h2 className="text-2xl font-bold">{photo.title}</h2>
+              <button 
+                onClick={onClose}
+                className="text-gray-400 hover:text-white p-2 transition-colors"
+                aria-label="Close"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
             <div>
               <h3 className="text-lg font-semibold text-gray-300 mb-2">Description</h3>
               <p className="text-gray-400">{photo.description}</p>
