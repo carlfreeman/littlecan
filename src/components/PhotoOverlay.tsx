@@ -57,19 +57,13 @@ const PhotoOverlay = ({ photo, onClose }: PhotoOverlayProps) => {
                 alt={photo.title}
                 width={0}
                 height={0}
-                className="object-contain"
+                className={`object-contain ${
+                  aspectRatio > 1 
+                    ? 'w-full h-auto max-h-[100%]' 
+                    : 'h-[70vh] sm:h-[80vh] w-auto max-w-full'
+                }`}
                 sizes="(max-width: 749px) 100vw, 70vw"
                 onLoad={handleImageLoad}
-                style={{ 
-                  width: aspectRatio > 1 ? '100%' : 'auto',
-                  height: aspectRatio > 1 ? 'auto' : '70vh',
-                  maxHeight: '85vh',
-                  maxWidth: '100%',
-                  // Desktop: 85vh
-                  '@media (min-width: 640px)': {
-                    height: aspectRatio > 1 ? 'auto' : '85vh'
-                  }
-                }}
               />
             </div>
           </div>
@@ -160,7 +154,7 @@ const PhotoOverlay = ({ photo, onClose }: PhotoOverlayProps) => {
         </div>
         <button 
           onClick={onClose}
-          className="text-gray-400 absolute z-100 top-5 right-5 hover:text-white p-1 transition-colors"
+          className="text-gray-400 absolute z-100 top-3 right-2 hover:text-white p-1 transition-colors"
           aria-label="Close"
         >
           <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
