@@ -69,7 +69,7 @@ const PhotoOverlay = ({ photo, onClose }: PhotoOverlayProps) => {
           </div>
           
           {/* Info panel - 30% width on large screens */}
-          <div className="w-full lg:w-[30%] p-4 lg:p-6 overflow-y-auto bg-black border-t lg:border-t-0 lg:border-l border-black">
+          <div className="w-full lg:w-[30%] p-4 lg:p-6 overflow-y-auto bg-black border-t lg:border-t-0 lg:border-l border-black scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-900">
             
             <div className="flex justify-center items-center">
               <h2 className="text-xl text-center font-semibold truncate max-w-[80%]">{photo.title}</h2>
