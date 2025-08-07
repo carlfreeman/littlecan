@@ -2,16 +2,16 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import PhotoCard from '../components/PhotoCard';
 import PhotoOverlay from '../components/PhotoOverlay';
-import { getRecentPhotos, Photo } from '../utils/photoUtils';
+import { getFeaturedPhotos, Photo } from '../utils/photoUtils';
 
 export default function Home() {
-  const [recentPhotos, setRecentPhotos] = useState<Photo[]>([]);
+  const [featuredPhotos, setFeaturedPhotos] = useState<Photo[]>([]);
   const [selectedPhoto, setSelectedPhoto] = useState<Photo | null>(null);
 
   useEffect(() => {
     const fetchPhotos = async () => {
-      const photos = await getRecentPhotos(6);
-      setRecentPhotos(photos);
+      const photos = await getFeaturedPhotos(6);
+      setFeaturedPhotos(photos);
     };
     
     fetchPhotos();
@@ -40,12 +40,15 @@ export default function Home() {
 
       <section className="mb-16">
         <div className="flex justify-between items-center mb-6">
-          <h2 className="text-2xl font-semibold">Recent Highlights</h2>
+          <h2 className="text-2xl font-semibold">Лучшее из последнего</h2>
+          <span className="text-gray-500 text-sm">
+            {featuredPhotos.filter(p => p.featured).length} curated selections
+          </span>
         </div>
         
-        {recentPhotos.length > 0 ? (
+        {featuredPhotos.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {recentPhotos.map(photo => (
+            {featuredPhotos.map(photo => (
               <PhotoCard 
                 key={photo.id} 
                 photo={photo} 
@@ -55,7 +58,7 @@ export default function Home() {
           </div>
         ) : (
           <div className="text-center py-12">
-            <p className="text-gray-500">Loading photos...</p>
+            <p className="text-gray-500">Loading featured photos...</p>
           </div>
         )}
       </section>

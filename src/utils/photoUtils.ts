@@ -9,6 +9,7 @@ export type Photo = {
   dimension: string;
   udate: string;
   tdate: string;
+  featured: boolean;
 };
 
 export const getPhotos = async (): Promise<Photo[]> => {
@@ -19,6 +20,14 @@ export const getPhotos = async (): Promise<Photo[]> => {
     console.error('Error fetching photos:', error);
     return [];
   }
+};
+
+export const getFeaturedPhotos = async (count: number = 6): Promise<Photo[]> => {
+  const photos = await getPhotos();
+  return photos
+    .filter(photo => photo.featured)
+    .sort((a, b) => new Date(b.udate).getTime() - new Date(a.udate).getTime())
+    .slice(0, count);
 };
 
 export const getRecentPhotos = async (count: number = 5): Promise<Photo[]> => {

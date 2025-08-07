@@ -31,7 +31,11 @@ export default function Gallery() {
     let result = photos;
     
     if (tagFilter !== 'all') {
-      result = result.filter(photo => photo.tags.includes(tagFilter));
+      if (tagFilter === 'featured') {
+        result = result.filter(photo => photo.featured);
+      } else {
+        result = result.filter(photo => photo.tags.includes(tagFilter));
+      }
     }
     
     if (seasonFilter) {

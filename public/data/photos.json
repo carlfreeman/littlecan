@@ -9,7 +9,8 @@
     "lens": "18-55mm f/3.5-5.6",
     "dimension": "4272x2848",
     "udate": "2025-08-06",
-    "tdate": "2025-05-09"
+    "tdate": "2025-05-09",
+    "featured": true
   },
   {
     "id": "0516_100",
@@ -18,21 +19,35 @@
     "season": "SS25",
     "tags": ["conceptual"],
     "camera": "Canon EOS 1100D",
-    "lens": "24-70mm f/2.8L",
+    "lens": "18-55mm f/3.5-5.6",
     "dimension": "4272x2848",
     "udate": "2025-08-06",
     "tdate": "2025-05-16"
   },
   {
     "id": "0518_withlove",
-    "title": "From Moscow with Love",
+    "title": "Патриций",
     "description": "Неоновая аптека, 2 чудесных пса и уверенность во всей фигуре.",
     "season": "SS25",
     "tags": ["street"],
     "camera": "Canon EOS 1100D",
-    "lens": "24-70mm f/2.8L",
+    "lens": "18-55mm f/3.5-5.6",
     "dimension": "2728x4272",
     "udate": "2025-08-06",
-    "tdate": "2025-05-18"
+    "tdate": "2025-05-18",
+    "featured": true
+  },
+  {
+    "id": "0720_3birds",
+    "title": "Тройка",
+    "description": "Куда они летят?",
+    "season": "SS25",
+    "tags": ["conceptual, nature"],
+    "camera": "Canon EOS 1100D",
+    "lens": "18-55mm f/3.5-5.6",
+    "dimension": "3698x2738",
+    "udate": "2025-08-07",
+    "tdate": "2025-07-20",
+    "featured": true
   }
 ]
