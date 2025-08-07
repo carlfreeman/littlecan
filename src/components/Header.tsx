@@ -3,10 +3,10 @@ import Link from 'next/link';
 
 const Header = () => {
   const navItems = [
-    { name: 'Main', path: '/' },
-    { name: 'Gallery', path: '/gallery' },
+    { name: '/Главная', path: '/' },
+    { name: '/Фотосклад', path: '/gallery' },
     // { name: 'Series', path: '/series' },
-    { name: 'About', path: '/about' },
+    { name: '/Автор', path: '/about' },
   ];
 
   return (

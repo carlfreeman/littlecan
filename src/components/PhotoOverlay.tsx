@@ -81,12 +81,12 @@ const PhotoOverlay = ({ photo, onClose }: PhotoOverlayProps) => {
               
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-300 mb-2">Season</h3>
+                  <h3 className="text-lg font-semibold text-gray-300 mb-2">Сезон</h3>
                   <p className="text-gray-400">{photo.season}</p>
                 </div>
                 
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-300 mb-2">Tags</h3>
+                  <h3 className="text-lg font-semibold text-gray-300 mb-2">Теги</h3>
                   <div className="flex flex-wrap gap-2">
                     {photo.tags.map(tag => (
                       <span 
@@ -100,22 +100,18 @@ const PhotoOverlay = ({ photo, onClose }: PhotoOverlayProps) => {
                 </div>
                 
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-300 mb-2">Camera</h3>
+                  <h3 className="text-lg font-semibold text-gray-300 mb-2">Камера</h3>
                   <p className="text-gray-400">{photo.camera}</p>
-                </div>
-                
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-300 mb-2">Lens</h3>
                   <p className="text-gray-400">{photo.lens}</p>
                 </div>
                 
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-300 mb-2">Dimensions</h3>
+                  <h3 className="text-lg font-semibold text-gray-300 mb-2">Разрешение</h3>
                   <p className="text-gray-400">{photo.dimension}</p>
                 </div>
                 
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-300 mb-2">Creation Date</h3>
+                  <h3 className="text-lg font-semibold text-gray-300 mb-2">Снято</h3>
                   <p className="text-gray-400">
                     {new Date(photo.tdate).toLocaleDateString('en-US', {
                       year: 'numeric',
@@ -126,7 +122,7 @@ const PhotoOverlay = ({ photo, onClose }: PhotoOverlayProps) => {
                 </div>
                 
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-300 mb-2">Upload Date</h3>
+                  <h3 className="text-lg font-semibold text-gray-300 mb-2">Загружено</h3>
                   <p className="text-gray-400">
                     {new Date(photo.udate).toLocaleDateString('en-US', {
                       year: 'numeric',
@@ -146,7 +142,7 @@ const PhotoOverlay = ({ photo, onClose }: PhotoOverlayProps) => {
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
                     <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
                   </svg>
-                  Download Original JPG
+                  Скачать оригинал
                 </a>
               </div>
             </div>

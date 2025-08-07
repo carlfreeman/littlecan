@@ -56,10 +56,9 @@ export default function Gallery() {
       )}
 
       <div className="mb-12 text-center">
-        <h1 className="text-3xl md:text-4xl font-bold mb-4">Gallery</h1>
+        <h1 className="text-3xl md:text-4xl font-bold mb-4">Фотосклад</h1>
         <p className="text-gray-400 max-w-2xl mx-auto">
-          Explore my collection of street, nature, and conceptual photography.
-          Each image tells a unique story through composition and emotion.
+          Здесь хранятся мои игры с реальностью, архивы уходящих мгновений, замеченная культура, интересный стиль, социальные и эмоциональные истории.
         </p>
       </div>
 
@@ -83,7 +82,7 @@ export default function Gallery() {
         </div>
       ) : (
         <div className="text-center py-12">
-          <p className="text-gray-500">No photos match your filters</p>
+          <p className="text-gray-500">Пока тут ничего нет...</p>
         </div>
       )}
     </div>
