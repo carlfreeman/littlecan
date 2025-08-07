@@ -30,7 +30,7 @@ const Header = () => {
               <li key={item.name}>
                 <Link 
                   href={item.path} 
-                  className="text-gray-300 hover:text-white transition-colors duration-200"
+                  className="text-gray-200 hover:text-white transition-colors duration-200"
                 >
                   {item.name}
                 </Link>
