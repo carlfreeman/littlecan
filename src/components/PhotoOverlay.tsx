@@ -15,8 +15,6 @@ const skeletonStyles = {
   duration: 1.5,
 };
 
-let rutag = {'street': 'стрит', 'nature': 'природа', 'conceptual': 'концепт', 'monochrome': 'монохром', 'featured': 'лучшее'};
-
 const PhotoOverlay = ({ photo, onClose }: PhotoOverlayProps) => {
   const [aspectRatio, setAspectRatio] = useState<number>(1);
   const [isImageLoading, setIsImageLoading] = useState(true);
@@ -119,7 +117,7 @@ const PhotoOverlay = ({ photo, onClose }: PhotoOverlayProps) => {
                         key={tag} 
                         className="px-3 py-1 bg-black border border-white rounded-full text-sm capitalize"
                       >
-                        {rutag[tag]}
+                        {tag}
                       </span>
                     ))}
                   </div>
