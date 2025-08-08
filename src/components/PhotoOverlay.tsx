@@ -15,6 +15,8 @@ const skeletonStyles = {
   duration: 1.5,
 };
 
+const rutag = {'street': 'стрит', 'nature': 'природа', 'conceptual': 'концепт', 'monochrome': 'монохром', 'featured': 'лучшее'};
+
 const PhotoOverlay = ({ photo, onClose }: PhotoOverlayProps) => {
   const [aspectRatio, setAspectRatio] = useState<number>(1);
   const [isImageLoading, setIsImageLoading] = useState(true);
@@ -97,7 +99,7 @@ const PhotoOverlay = ({ photo, onClose }: PhotoOverlayProps) => {
           <div className="w-full lg:w-[30%] p-4 lg:p-6 overflow-y-auto bg-black border-t lg:border-t-0 lg:border-l border-black scrollbar-thin scrollbar-thumb-gray-100 scrollbar-track-gray-900">
             
             <div className="flex justify-center items-center">
-              <h2 className="text-xl text-center font-semibold truncate max-w-[80%]">{photo.title}</h2>
+              <h2 className="text-lg md:text-xl text-center font-semibold truncate max-w-[80%]">{photo.title}</h2>
             </div>
             
             <div className="space-y-6">
@@ -118,7 +120,7 @@ const PhotoOverlay = ({ photo, onClose }: PhotoOverlayProps) => {
                         key={tag} 
                         className="px-3 py-1 bg-black border border-white rounded-full text-sm capitalize"
                       >
-                        {tag}
+                        {rutag[tag]}
                       </span>
                     ))}
                   </div>

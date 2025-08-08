@@ -22,7 +22,7 @@ export const getPhotos = async (): Promise<Photo[]> => {
   }
 };
 
-export const getFeaturedPhotos = async (count: number = 6): Promise<Photo[]> => {
+export const getFeaturedPhotos = async (count: number = 20): Promise<Photo[]> => {
   const photos = await getPhotos();
   return photos
     .filter(photo => photo.featured)

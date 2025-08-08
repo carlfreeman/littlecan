@@ -10,7 +10,7 @@ export default function SeasonFilter({ seasons, currentSeason, onFilterChange }:
   return (
     <div className="flex flex-wrap gap-3 mt-4">
       <button
-        className={`px-4 py-2 rounded-full ${
+        className={`px-4 py-1 rounded-full ${
           currentSeason === ''
             ? 'bg-white text-gray-900'
             : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
@@ -22,7 +22,7 @@ export default function SeasonFilter({ seasons, currentSeason, onFilterChange }:
       {seasons.map(season => (
         <button
           key={season}
-          className={`px-4 py-2 rounded-full ${
+          className={`px-4 py-1 rounded-full ${
             currentSeason === season
               ? 'bg-white text-gray-900'
               : 'bg-gray-800 text-gray-300 hover:bg-gray-700'

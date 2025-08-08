@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 const tags = ['street', 'nature', 'conceptual', 'monochrome', 'featured'];
+const rutag = {'street': 'стрит', 'nature': 'природа', 'conceptual': 'концепт', 'monochrome': 'монохром', 'featured': 'лучшее'};
 
 const TagFilter = ({
   onFilterChange,
@@ -24,7 +25,7 @@ const TagFilter = ({
         }`}
         onClick={() => handleTagChange('all')}
       >
-        All
+        Все
       </button>
       {tags.map(tag => (
         <button
@@ -36,7 +37,7 @@ const TagFilter = ({
           }`}
           onClick={() => handleTagChange(tag)}
         >
-          {tag}
+          {rutag[tag]}
         </button>
       ))}
     </div>
