@@ -7,16 +7,6 @@ import { getFeaturedPhotos, Photo } from '../utils/photoUtils';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 
-// Helper function to shuffle array
-function shuffleArray(array: any[]) {
-  const newArray = [...array];
-  for (let i = newArray.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
-  }
-  return newArray;
-}
-
 export default function Home() {
   const [featuredPhotos, setFeaturedPhotos] = useState<Photo[]>([]);
   const [selectedPhoto, setSelectedPhoto] = useState<Photo | null>(null);
@@ -26,10 +16,8 @@ export default function Home() {
     const fetchPhotos = async () => {
       setIsLoading(true);
       try {
-        const photos = await getFeaturedPhotos();
-        // Shuffle and take first 6
-        const shuffledPhotos = shuffleArray(photos).slice(0, 6);
-        setFeaturedPhotos(shuffledPhotos);
+        const photos = await getFeaturedPhotos(6);
+        setFeaturedPhotos(photos);
       } catch (error) {
         console.error('Error loading photos:', error);
       } finally {
@@ -65,7 +53,7 @@ export default function Home() {
           <h2 className="text-2xl font-semibold">Лучшее из последнего</h2>
           {!isLoading && (
             <span className="text-gray-500 text-sm">
-              {featuredPhotos.length} фото
+              {featuredPhotos.filter(p => p.featured).length} фото
             </span>
           )}
         </div>

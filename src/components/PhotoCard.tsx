@@ -21,9 +21,9 @@ const PhotoCard = ({ photo, onClick }: { photo: Photo; onClick: () => void }) =>
         />
       </div>
       
-      <div className="p-2 md:p-4">
+      <div className="p-4">
         <h3 
-          className="font-semibold sm:text-sm md:text-lg truncate cursor-pointer"
+          className="font-semibold text-lg truncate cursor-pointer"
           onClick={onClick}
         >
           {photo.title}
