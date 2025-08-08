@@ -17,7 +17,7 @@ const PhotoPlate = ({ photo, onClick }: { photo: Photo; onClick: () => void }) =
   }
 
   return (
-    <div className="group relative overflow-hidden transition-all duration-500">
+    <div className="group relative overflow-hidden transition-all duration-500 border border-white">
       <div 
         className={`${aspectClass} overflow-hidden cursor-pointer`}
         onClick={onClick}
