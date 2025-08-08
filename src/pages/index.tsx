@@ -28,7 +28,7 @@ export default function Home() {
       try {
         const photos = await getFeaturedPhotos();
         // Shuffle and take first 6
-        const shuffledPhotos = shuffleArray(photos).slice(0, 20);
+        const shuffledPhotos = shuffleArray(photos).slice(0, 6);
         setFeaturedPhotos(shuffledPhotos);
       } catch (error) {
         console.error('Error loading photos:', error);
@@ -49,6 +49,17 @@ export default function Home() {
         />
       )}
 
+      <section className="mb-16 text-center">
+        <div className="max-w-3xl mx-auto">
+          <h1 className="text-4xl md:text-5xl font-bold mb-6">
+            Свет. Форма. Метафизика.
+          </h1>
+          <p className="text-gray-400 text-lg">
+            Исследую границы визуального повествования через стрит-фотографию и концептуальные проекты
+          </p>
+        </div>
+      </section>
+
       <section className="mb-16">
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-2xl font-semibold">Лучшее из последнего</h2>
@@ -59,15 +70,12 @@ export default function Home() {
           )}
         </div>
         
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-0 auto-cols-[minmax(200px,auto)]">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-6">
           {isLoading ? (
-            Array.from({ length: 20 }).map((_, index) => (
-              <div 
-                key={index} 
-                className={"row-span-auto"}
-              >
+            Array.from({ length: 6 }).map((_, index) => (
+              <div key={index} className="aspect-square">
                 <Skeleton 
-                  height="100%"
+                  height="100%" 
                   baseColor="#1a1a1a"
                   highlightColor="#2d2d2d"
                   duration={1.5}
@@ -75,26 +83,13 @@ export default function Home() {
               </div>
             ))
           ) : featuredPhotos.length > 0 ? (
-            featuredPhotos.map((photo, index) => {
-              const [width, height] = photo.dimension.split('x').map(Number);
-              const isPortrait = height > width * 1.25;
-              const isLandscape = width > height * 1.25;
-              
-              return (
-                <div 
-                  key={photo.id}
-                  className={`
-                  ${isPortrait ? 'row-span-2' : ''}
-                  ${isLandscape ? 'col-span-2' : ''}
-                `}
-                >
-                  <PhotoPlate 
-                    photo={photo} 
-                    onClick={() => setSelectedPhoto(photo)}
-                  />
-                </div>
-              );
-            })
+            featuredPhotos.map(photo => (
+              <PhotoPlate 
+                key={photo.id} 
+                photo={photo} 
+                onClick={() => setSelectedPhoto(photo)}
+              />
+            ))
           ) : (
             <div className="col-span-full text-center py-12">
               <p className="text-gray-500">No featured photos available</p>
@@ -104,18 +99,18 @@ export default function Home() {
       </section>
 
       <section className="py-12 border-t border-gray-800">
-        <div className="max-w-3xl mx-auto text-center">
+        <div className="max-w-4xl mx-auto text-center">
           <p className="text-gray-400 mb-8">
             Верю, что фотография - это не окончательная фиксация момента, а способ сохранить, пересоздать его, чтобы пережить заново.
             Это поиск необычного в повседневности.
           </p>
           <div className="flex justify-center">
-            <div className="relative w-32 h-32 rounded-full overflow-hidden border-2 border-gray-400">
+            <div className="relative w-64 h-64 rounded-full overflow-hidden border-2 border-gray-400">
               <Image
                 src="/photos/artist.webp"
                 alt="Photographer"
-                width={128}
-                height={128}
+                width={256}
+                height={256}
                 className="w-full h-full object-cover"
                 priority
               />

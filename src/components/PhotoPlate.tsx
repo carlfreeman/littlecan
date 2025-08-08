@@ -2,33 +2,18 @@ import Image from 'next/image';
 import { Photo } from '../utils/photoUtils';
 
 const PhotoPlate = ({ photo, onClick }: { photo: Photo; onClick: () => void }) => {
-  // Parse dimensions (assuming format "3235x2323")
-  const [width, height] = photo.dimension.split('x').map(Number);
-  const aspectRatio = width / height;
-
-  let aspectClass = "aspect-square";
-  
-  if (aspectRatio > 1.2) {
-    aspectClass = "aspect-[2/1]";
-  } else if (aspectRatio < 0.8) {
-    aspectClass = "aspect-[1/2]";
-  } else {
-    aspectClass = "aspect-square"
-  }
-
   return (
-    <div className="group relative overflow-hidden transition-all duration-500 border border-white">
+    <div className="group relative overflow-hidden rounded-sm bg-white/10 border border-white/5 transition-all duration-500 hover:border-white/90 hover:bg-white/5">
       <div 
-        className={`${aspectClass} overflow-hidden cursor-pointer`}
+        className="aspect-square overflow-hidden cursor-pointer"
         onClick={onClick}
       >
         <Image
           src={`/photos/${photo.id}.webp`}
           alt={photo.title}
-          width={width}
-          height={height}
-          loading="lazy"
-          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+          width={600}
+          height={600}
+          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
         />
       </div>
     </div>

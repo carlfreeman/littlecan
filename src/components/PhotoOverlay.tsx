@@ -51,6 +51,7 @@ const PhotoOverlay = ({ photo, onClose }: PhotoOverlayProps) => {
     setAspectRatio(1);
   }, [photo]);
 
+  // Determine image orientation class
   const imageOrientationClass = aspectRatio > 1 
     ? 'w-full h-auto max-h-[85vh]'  // Landscape
     : 'h-[80vh] w-auto max-w-full'; // Portrait

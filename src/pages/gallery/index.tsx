@@ -79,12 +79,10 @@ export default function Gallery() {
         />
       )}
 
-      <div className="max-w-3xl mx-auto text-center">
-        <h1 className="text-4xl md:text-5xl font-bold mb-6">
-          Свет. Форма. Метафизика.
-        </h1>
-        <p className="text-gray-400 text-lg">
-          Исследую границы визуального повествования через стрит-фотографию и концептуальные проекты
+      <div className="mb-12 text-center">
+        <h1 className="text-3xl md:text-4xl font-bold mb-4">Фотосклад</h1>
+        <p className="text-gray-400 max-w-2xl mx-auto">
+          Здесь хранятся мои игры с реальностью, архивы уходящих мгновений, замеченная культура, интересный стиль, социальные и эмоциональные истории.
         </p>
       </div>
 

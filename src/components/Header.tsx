@@ -10,7 +10,7 @@ const Header = () => {
   ];
 
   return (
-    <header className="sticky top-0 z-50 bg-black/15 backdrop-blur-lg">
+    <header className="sticky top-0 z-50 bg-white/5 backdrop-blur-sm">
       <div className="container mx-auto px-4 py-3 flex items-center justify-between">
         <Link href="/">
           <div className="flex items-center space-x-2 z-100">
