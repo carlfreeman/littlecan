@@ -15,7 +15,7 @@ const skeletonStyles = {
   duration: 1.5,
 };
 
-const rutag = {'street': 'стрит', 'nature': 'природа', 'conceptual': 'концепт', 'monochrome': 'монохром', 'featured': 'лучшее'};
+let rutag = {'street': 'стрит', 'nature': 'природа', 'conceptual': 'концепт', 'monochrome': 'монохром', 'featured': 'лучшее'};
 
 const PhotoOverlay = ({ photo, onClose }: PhotoOverlayProps) => {
   const [aspectRatio, setAspectRatio] = useState<number>(1);
