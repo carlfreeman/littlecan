@@ -28,7 +28,7 @@ export default function Home() {
       try {
         const photos = await getFeaturedPhotos();
         // Shuffle and take first 6
-        const shuffledPhotos = shuffleArray(photos).slice(0, 20);
+        const shuffledPhotos = shuffleArray(photos).slice(0, 10);
         setFeaturedPhotos(shuffledPhotos);
       } catch (error) {
         console.error('Error loading photos:', error);
@@ -59,9 +59,9 @@ export default function Home() {
           )}
         </div>
         
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-0 auto-cols-[minmax(200px,auto)]">
+        <div className="grid grid-rows-auto grid-cols-4 sm:grid-cols-6 lg:grid-cols-12 gap-0 auto-cols-[minmax(200px,auto)]">
           {isLoading ? (
-            Array.from({ length: 20 }).map((_, index) => (
+            Array.from({ length: 10 }).map((_, index) => (
               <div 
                 key={index} 
                 className={"row-span-auto"}
@@ -84,8 +84,8 @@ export default function Home() {
                 <div 
                   key={photo.id}
                   className={`
-                  ${isPortrait ? 'row-span-2' : ''}
-                  ${isLandscape ? 'col-span-2' : ''}
+                  ${isPortrait ? 'row-span-4 col-span-3' : ''}
+                  ${isLandscape ? 'col-span-4 row-span-3' : 'col-span-4'}
                 `}
                 >
                   <PhotoPlate 
@@ -103,7 +103,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-12 border-t border-gray-800">
+      <section className="py-5 border-t border-gray-800">
         <div className="max-w-3xl mx-auto text-center">
           <p className="text-gray-400 mb-8">
             Верю, что фотография - это не окончательная фиксация момента, а способ сохранить, пересоздать его, чтобы пережить заново.

@@ -9,9 +9,9 @@ const PhotoPlate = ({ photo, onClick }: { photo: Photo; onClick: () => void }) =
   let aspectClass = "aspect-square";
   
   if (aspectRatio > 1.2) {
-    aspectClass = "aspect-[2/1]";
+    aspectClass = "aspect-[4/3]";
   } else if (aspectRatio < 0.8) {
-    aspectClass = "aspect-[1/2]";
+    aspectClass = "aspect-[3/4]";
   } else {
     aspectClass = "aspect-square"
   }

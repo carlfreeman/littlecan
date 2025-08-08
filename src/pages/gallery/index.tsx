@@ -98,7 +98,7 @@ export default function Gallery() {
       </div>
 
       {isLoading ? (
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-6 ">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3 ">
           {[...Array(6)].map((_, index) => (
             <div key={index} className="aspect-square">
               <Skeleton height="100%" />
@@ -106,7 +106,7 @@ export default function Gallery() {
           ))}
         </div>
       ) : filteredPhotos.length > 0 ? (
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 sm:gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3">
           {filteredPhotos.map(photo => (
             <PhotoCard 
               key={photo.id} 
