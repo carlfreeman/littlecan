@@ -1,45 +1,37 @@
 import { useState, useEffect } from 'react';
 
-const SeasonFilter = ({
-  seasons,
-  onFilterChange,
-}: {
+interface SeasonFilterProps {
   seasons: string[];
+  currentSeason: string;
   onFilterChange: (season: string) => void;
-}) => {
-  const [selectedSeason, setSelectedSeason] = useState('All');
+}
 
-  useEffect(() => {
-    onFilterChange(selectedSeason === 'All' ? '' : selectedSeason);
-  }, [selectedSeason, onFilterChange]);
-
+export default function SeasonFilter({ seasons, currentSeason, onFilterChange }: SeasonFilterProps) {
   return (
-    <div className="flex flex-wrap gap-2">
+    <div className="flex flex-wrap gap-3 mt-4">
       <button
-        className={`px-3 py-1 rounded-full text-sm ${
-          selectedSeason === 'All'
-            ? 'bg-white text-black'
-            : 'bg-white/10 text-white hover:bg-white/30'
+        className={`px-4 py-2 rounded-full ${
+          currentSeason === ''
+            ? 'bg-white text-gray-900'
+            : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
         }`}
-        onClick={() => setSelectedSeason('All')}
+        onClick={() => onFilterChange('')}
       >
-        All Seasons
+        Все сезоны
       </button>
       {seasons.map(season => (
         <button
           key={season}
-          className={`px-3 py-1 rounded-full text-sm ${
-            selectedSeason === season
-              ? 'bg-white text-black'
-              : 'bg-white/20 text-white hover:bg-white/50'
+          className={`px-4 py-2 rounded-full ${
+            currentSeason === season
+              ? 'bg-white text-gray-900'
+              : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
           }`}
-          onClick={() => setSelectedSeason(season)}
+          onClick={() => onFilterChange(season)}
         >
           {season}
         </button>
       ))}
     </div>
   );
-};
-
-export default SeasonFilter;
+}

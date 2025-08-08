@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/router'; // Added router import
 import PhotoCard from '../../components/PhotoCard';
 import PhotoOverlay from '../../components/PhotoOverlay';
 import TagFilter from '../../components/TagFilter';
@@ -8,6 +9,7 @@ import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 
 export default function Gallery() {
+  const router = useRouter(); // Initialize router
   const [photos, setPhotos] = useState<Photo[]>([]);
   const [filteredPhotos, setFilteredPhotos] = useState<Photo[]>([]);
   const [seasons, setSeasons] = useState<string[]>([]);
@@ -16,6 +18,7 @@ export default function Gallery() {
   const [selectedPhoto, setSelectedPhoto] = useState<Photo | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
+  // Fetch data and handle URL parameters
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
@@ -25,8 +28,19 @@ export default function Gallery() {
           getSeasons(),
         ]);
         setPhotos(photosData);
-        setFilteredPhotos(photosData);
         setSeasons(seasonsData);
+        
+        // Set initial season filter from URL
+        if (router.query.season) {
+          const seasonParam = router.query.season;
+          const seasonValue = Array.isArray(seasonParam) 
+            ? seasonParam[0] 
+            : seasonParam;
+            
+          if (seasonsData.includes(seasonValue)) {
+            setSeasonFilter(seasonValue);
+          }
+        }
       } catch (error) {
         console.error('Error fetching data:', error);
       } finally {
@@ -35,8 +49,9 @@ export default function Gallery() {
     };
     
     fetchData();
-  }, []);
+  }, [router.query.season]); // Watch for season parameter changes
 
+  // Filter photos based on current filters
   useEffect(() => {
     let result = photos;
     
@@ -75,6 +90,7 @@ export default function Gallery() {
         <TagFilter onFilterChange={setTagFilter} />
         <SeasonFilter 
           seasons={seasons} 
+          currentSeason={seasonFilter}
           onFilterChange={setSeasonFilter} 
         />
       </div>

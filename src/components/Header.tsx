@@ -5,7 +5,7 @@ const Header = () => {
   const navItems = [
     { name: '/Главная', path: '/' },
     { name: '/Фотосклад', path: '/gallery' },
-    // { name: 'Series', path: '/series' },
+    // { name: '/Сезоны', path: '/series' },
     { name: '/Автор', path: '/about' },
   ];
 

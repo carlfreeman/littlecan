@@ -1,16 +1,24 @@
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { Photo } from '../utils/photoUtils';
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 
 type PhotoOverlayProps = {
   photo: Photo;
   onClose: () => void;
 };
 
+const skeletonStyles = {
+  baseColor: '#1a1a1a',
+  highlightColor: '#2d2d2d',
+  duration: 1.5,
+};
+
 const PhotoOverlay = ({ photo, onClose }: PhotoOverlayProps) => {
   const [aspectRatio, setAspectRatio] = useState<number>(1);
+  const [isImageLoading, setIsImageLoading] = useState(true);
   
-  // Block scrolling when overlay is open
   useEffect(() => {
     document.body.style.overflow = 'hidden';
     return () => {
@@ -32,7 +40,14 @@ const PhotoOverlay = ({ photo, onClose }: PhotoOverlayProps) => {
   const handleImageLoad = (e: React.SyntheticEvent<HTMLImageElement>) => {
     const img = e.target as HTMLImageElement;
     setAspectRatio(img.naturalWidth / img.naturalHeight);
+    setIsImageLoading(false);
   };
+
+  // Reset loading state when photo changes
+  useEffect(() => {
+    setIsImageLoading(true);
+    setAspectRatio(1);
+  }, [photo]);
 
   // Determine image orientation class
   const imageOrientationClass = aspectRatio > 1 
@@ -49,9 +64,20 @@ const PhotoOverlay = ({ photo, onClose }: PhotoOverlayProps) => {
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex-grow overflow-auto flex flex-col lg:flex-row">
-          {/* Image container - dynamic sizing based on orientation */}
-          <div className="w-full sm:w-[70%] flex items-center justify-center p-0 bg-black">
-            <div className="relative flex items-center justify-center w-full h-full">
+          <div className="w-full sm:w-[70%] flex items-center justify-center p-0 bg-black relative">
+            {isImageLoading && (
+              <div className="absolute inset-0 flex items-center justify-center">
+                <Skeleton 
+                  className="w-full h-full skeleton-black" 
+                  containerClassName="absolute inset-0 w-full h-full"
+                  baseColor={skeletonStyles.baseColor}
+                  highlightColor={skeletonStyles.highlightColor}
+                  duration={skeletonStyles.duration}
+                />
+              </div>
+            )}
+            
+            <div className={`relative flex items-center justify-center w-full h-full transition-opacity duration-300 ${isImageLoading ? 'opacity-0' : 'opacity-100'}`}>
               <Image
                 src={`/photos/${photo.id}.webp`}
                 alt={photo.title}
@@ -68,17 +94,16 @@ const PhotoOverlay = ({ photo, onClose }: PhotoOverlayProps) => {
             </div>
           </div>
           
-          {/* Info panel - 30% width on large screens */}
           <div className="w-full lg:w-[30%] p-4 lg:p-6 overflow-y-auto bg-black border-t lg:border-t-0 lg:border-l border-black scrollbar-thin scrollbar-thumb-gray-100 scrollbar-track-gray-900">
             
             <div className="flex justify-center items-center">
               <h2 className="text-xl text-center font-semibold truncate max-w-[80%]">{photo.title}</h2>
             </div>
+            
             <div className="space-y-6">
               <div className="text-justify">
                 <p className="text-gray-400">{photo.description}</p>
               </div>
-              
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <h3 className="text-lg font-semibold text-gray-300 mb-2">Сезон</h3>

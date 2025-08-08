@@ -3,7 +3,7 @@ import { Photo } from '../utils/photoUtils';
 
 const PhotoCard = ({ photo, onClick }: { photo: Photo; onClick: () => void }) => {
   return (
-    <div className="group relative overflow-hidden rounded-lg bg-white/10 border border-white/10 transition-all duration-300 hover:border-white/50 hover:bg-white/5">
+    <div className="group relative overflow-hidden rounded bg-white/10 border border-white/10 transition-all duration-500 hover:border-white/80 hover:bg-white/5">
       {photo.featured && (
         <div className="absolute bottom-0 right-0 z-10 bg-orange-200 text-gray-900 px-1 py-0 text-xs font-bold">
         +

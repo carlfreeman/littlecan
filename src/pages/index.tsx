@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import PhotoCard from '../components/PhotoCard';
+import PhotoPlate from '../components/PhotoPlate'
 import PhotoOverlay from '../components/PhotoOverlay';
 import { getFeaturedPhotos, Photo } from '../utils/photoUtils';
 
@@ -10,7 +11,7 @@ export default function Home() {
 
   useEffect(() => {
     const fetchPhotos = async () => {
-      const photos = await getFeaturedPhotos(3);
+      const photos = await getFeaturedPhotos(6);
       setFeaturedPhotos(photos);
     };
     
@@ -19,7 +20,6 @@ export default function Home() {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      {/* Overlay when photo is selected */}
       {selectedPhoto && (
         <PhotoOverlay 
           photo={selectedPhoto} 
@@ -47,9 +47,9 @@ export default function Home() {
         </div>
         
         {featuredPhotos.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-6">
             {featuredPhotos.map(photo => (
-              <PhotoCard 
+              <PhotoPlate 
                 key={photo.id} 
                 photo={photo} 
                 onClick={() => setSelectedPhoto(photo)}
@@ -70,7 +70,7 @@ export default function Home() {
             Это поиск необычного в повседневности.
           </p>
           <div className="flex justify-center">
-            <div className="relative w-64 h-64 rounded-full overflow-hidden border-4 border-gray-700">
+            <div className="relative w-64 h-64 rounded-full overflow-hidden border-2 border-gray-400">
               <Image
                 src="/photos/artist.webp"
                 alt="Photographer"

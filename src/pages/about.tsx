@@ -6,7 +6,7 @@ export default function About() {
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-16">
           <h1 className="text-3xl md:text-4xl font-bold mb-6 font-geist">Привет!</h1>
-          <div className="w-64 h-64 mx-auto rounded-full overflow-hidden border-4 border-gray-700 mb-6">
+          <div className="w-64 h-64 mx-auto rounded-full overflow-hidden border-2 border-gray-400 mb-6">
             <Image
               src="/photos/artist.webp"
               alt="Photographer"
