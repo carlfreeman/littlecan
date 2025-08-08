@@ -4,6 +4,8 @@ import PhotoOverlay from '../../components/PhotoOverlay';
 import TagFilter from '../../components/TagFilter';
 import SeasonFilter from '../../components/SeasonFilter';
 import { getPhotos, getSeasons, Photo } from '../../utils/photoUtils';
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 
 export default function Gallery() {
   const [photos, setPhotos] = useState<Photo[]>([]);
@@ -12,16 +14,24 @@ export default function Gallery() {
   const [tagFilter, setTagFilter] = useState('all');
   const [seasonFilter, setSeasonFilter] = useState('');
   const [selectedPhoto, setSelectedPhoto] = useState<Photo | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
-      const [photosData, seasonsData] = await Promise.all([
-        getPhotos(),
-        getSeasons(),
-      ]);
-      setPhotos(photosData);
-      setFilteredPhotos(photosData);
-      setSeasons(seasonsData);
+      setIsLoading(true);
+      try {
+        const [photosData, seasonsData] = await Promise.all([
+          getPhotos(),
+          getSeasons(),
+        ]);
+        setPhotos(photosData);
+        setFilteredPhotos(photosData);
+        setSeasons(seasonsData);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      } finally {
+        setIsLoading(false);
+      }
     };
     
     fetchData();
@@ -47,7 +57,6 @@ export default function Gallery() {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      {/* Photo overlay */}
       {selectedPhoto && (
         <PhotoOverlay 
           photo={selectedPhoto} 
@@ -70,7 +79,15 @@ export default function Gallery() {
         />
       </div>
 
-      {filteredPhotos.length > 0 ? (
+      {isLoading ? (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {[...Array(6)].map((_, index) => (
+            <div key={index} className="aspect-square">
+              <Skeleton height="100%" />
+            </div>
+          ))}
+        </div>
+      ) : filteredPhotos.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredPhotos.map(photo => (
             <PhotoCard 
