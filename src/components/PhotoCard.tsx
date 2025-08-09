@@ -3,7 +3,7 @@ import { Photo } from '../utils/photoUtils';
 
 const PhotoCard = ({ photo, onClick }: { photo: Photo; onClick: () => void }) => {
   return (
-    <div className="group relative overflow-hidden rounded bg-white/10 border border-white/10 transition-all duration-500 hover:border-white/80 hover:bg-white/5">
+    <div className="group relative overflow-hidden rounded bg-white/5 border border-white/10 transition-all duration-500 hover:border-white/80 hover:bg-white/5">
       {photo.featured && (
         <div className="absolute bottom-0 w-full h-1 z-10 bg-yellow-600 text-gray-900 px-0 py-0 text-xs font-bold">
         </div>
@@ -21,21 +21,21 @@ const PhotoCard = ({ photo, onClick }: { photo: Photo; onClick: () => void }) =>
         />
       </div>
       
-      <div className="p-4">
+      <div className="p-3">
         <h3 
           className="font-semibold text-lg truncate cursor-pointer"
           onClick={onClick}
         >
           {photo.title}
         </h3>
-        <p 
+        {/*<p 
           className="text-gray-400 text-sm mt-1 truncate cursor-pointer"
           onClick={onClick}
         >
           {photo.description}
-        </p>
+        </p>*/}
         
-        <div className="mt-3 flex justify-between items-center">
+        <div className="mt-2 flex justify-between items-center">
           <span className="px-2 py-1 bg-gray-700 rounded text-xs">
             {photo.season}
           </span>

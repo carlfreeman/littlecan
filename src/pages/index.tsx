@@ -93,12 +93,12 @@ export default function Home() {
             Это поиск необычного в повседневности.
           </p>
           <div className="flex justify-center">
-            <div className="relative w-64 h-64 rounded-full overflow-hidden border-2 border-gray-400">
+            <div className="relative w-32 h-32 rounded-full overflow-hidden border-1 border-gray-400 shadow-magenta-500">
               <Image
                 src="/photos/artist.webp"
                 alt="Photographer"
-                width={256}
-                height={256}
+                width={128}
+                height={128}
                 className="w-full h-full object-cover"
                 priority
               />
