@@ -16,16 +16,29 @@ class ImageToolsApp:
         
         # Categories data
         self.categories = {
-            'street': 'Street',
-            'nature': 'Nature',
-            'conceptual': 'Conceptual',
-            'monochrome': 'Monochrome'
+            'Nature': 'nature', 
+            'Urban': 'urban', 
+            'Wildlife': 'wildlife', 
+            'Portrait': 'portrait', 
+            'Conceptual': 'conceptual', 
+            'Monochrome': 'monochrome', 
+            'Macro': 'macro', 
+            'Night': 'night', 
+            'Candid': 'candid'
         }
         
         # Default camera info
         self.default_camera = "Canon EOS 1100D"
-        self.default_lens = "18-55mm f/3.5-5.6"
-        
+        self.default_lens = "Tamron 18-270mm f/3.5-6.3 DI II VC"
+        # Camera and lens options
+        self.camera_options = ['Canon EOS 1100D', 'Sony A3500']
+        self.lens_options = [
+            'Canon 18-55mm f/3.5-5.6',
+            'Canon EF-S 18-135mm f/3.5-5.6 IS STM',
+            'Tamron 18-270mm F/3.5-6.3 Di II VC PZD',
+            'Sony E 18-50mm F4-5.6'
+        ]
+
         self.create_main_menu()
     
     def create_main_menu(self):
@@ -259,7 +272,7 @@ class ImageToolsApp:
         ).pack(pady=10, ipadx=20, ipady=5)
     
     def create_metadata_editor(self):
-        """Create metadata editor interface"""
+        """Create metadata editor interface with camera/lens dropdowns and date inputs"""
         self.clear_window()
         
         # Back button
@@ -278,34 +291,70 @@ class ImageToolsApp:
         self.image_label.pack()
         
         # Metadata form
-        ttk.Label(self.form_frame, text="File ID:").grid(row=0, column=0, sticky="w")
+        row = 0
+        ttk.Label(self.form_frame, text="File ID:").grid(row=row, column=0, sticky="w")
         self.file_id_label = ttk.Label(self.form_frame, text="")
-        self.file_id_label.grid(row=0, column=1, sticky="w")
+        self.file_id_label.grid(row=row, column=1, sticky="w")
+        row += 1
         
-        ttk.Label(self.form_frame, text="Title:").grid(row=1, column=0, sticky="w")
+        ttk.Label(self.form_frame, text="Title:").grid(row=row, column=0, sticky="w")
         self.title_entry = ttk.Entry(self.form_frame, width=40)
-        self.title_entry.grid(row=1, column=1, pady=5, sticky="w")
-
-        ttk.Label(self.form_frame, text="Description:").grid(row=2, column=0, sticky="nw")
-        self.description_text = tk.Text(self.form_frame, width=40, height=5)
-        self.description_text.grid(row=2, column=1, pady=5, sticky="w")
+        self.title_entry.grid(row=row, column=1, pady=5, sticky="w")
+        row += 1
         
-        ttk.Label(self.form_frame, text="Season:").grid(row=3, column=0, sticky="w")
+        ttk.Label(self.form_frame, text="Description:").grid(row=row, column=0, sticky="nw")
+        self.description_text = tk.Text(self.form_frame, width=40, height=4)
+        self.description_text.grid(row=row, column=1, pady=5, sticky="w")
+        row += 1
+        
+        ttk.Label(self.form_frame, text="Season (e.g., SS25):").grid(row=row, column=0, sticky="w")
         self.season_entry = ttk.Entry(self.form_frame, width=40)
-        self.season_entry.grid(row=3, column=1, pady=5, sticky="w")
+        self.season_entry.grid(row=row, column=1, pady=5, sticky="w")
+        row += 1
         
-        ttk.Label(self.form_frame, text="Categories:").grid(row=4, column=0, sticky="nw")
-        ttk.Label(self.form_frame, text="Enter indices (0-3) separated by commas:").grid(row=4, column=1, sticky="w")
+        # Tags with indices input
+        ttk.Label(self.form_frame, text="Tags (indices):").grid(row=row, column=0, sticky="nw")
+        ttk.Label(self.form_frame, text="Enter indices (0-9) separated by commas:").grid(row=row, column=1, sticky="w")
+        row += 1
         self.categories_entry = ttk.Entry(self.form_frame, width=40)
-        self.categories_entry.grid(row=5, column=1, pady=5, sticky="w")
+        self.categories_entry.grid(row=row, column=1, pady=5, sticky="w")
+        row += 1
         
-        # Show available categories
+        # Display available tags
         for i, (key, value) in enumerate(self.categories.items()):
-            ttk.Label(self.form_frame, text=f"{i}: {value} ({key})").grid(row=6+i, column=1, sticky="w")
+            ttk.Label(self.form_frame, text=f"{i}: {value} ({key})", font=("TkDefaultFont", 8)).grid(row=row, column=1, sticky="w")
+            row += 1
         
-        ttk.Label(self.form_frame, text="Featured:").grid(row=10, column=0, sticky="w")
+        # Camera dropdown
+        ttk.Label(self.form_frame, text="Camera:").grid(row=row, column=0, sticky="w")
+        self.camera_var = tk.StringVar()
+        self.camera_combo = ttk.Combobox(self.form_frame, textvariable=self.camera_var, values=self.camera_options, width=37, state="readonly")
+        self.camera_combo.grid(row=row, column=1, pady=5, sticky="w")
+        row += 1
+        
+        # Lens dropdown
+        ttk.Label(self.form_frame, text="Lens:").grid(row=row, column=0, sticky="w")
+        self.lens_var = tk.StringVar()
+        self.lens_combo = ttk.Combobox(self.form_frame, textvariable=self.lens_var, values=self.lens_options, width=37, state="readonly")
+        self.lens_combo.grid(row=row, column=1, pady=5, sticky="w")
+        row += 1
+        
+        # Manual date inputs
+        ttk.Label(self.form_frame, text="Upload Date (YYYY-MM-DD):").grid(row=row, column=0, sticky="w")
+        self.udate_entry = ttk.Entry(self.form_frame, width=40)
+        self.udate_entry.grid(row=row, column=1, pady=5, sticky="w")
+        row += 1
+        
+        ttk.Label(self.form_frame, text="Taken Date (YYYY-MM-DD):").grid(row=row, column=0, sticky="w")
+        self.tdate_entry = ttk.Entry(self.form_frame, width=40)
+        self.tdate_entry.grid(row=row, column=1, pady=5, sticky="w")
+        row += 1
+        
+        # Featured checkbox
+        ttk.Label(self.form_frame, text="Featured:").grid(row=row, column=0, sticky="w")
         self.featured_var = tk.BooleanVar(value=False)
-        ttk.Checkbutton(self.form_frame, variable=self.featured_var).grid(row=10, column=1, sticky="w")
+        ttk.Checkbutton(self.form_frame, variable=self.featured_var).grid(row=row, column=1, sticky="w")
+        row += 1
         
         # Navigation controls
         self.control_frame = ttk.Frame(self.root)
@@ -338,7 +387,7 @@ class ImageToolsApp:
         
         # Load initial folder
         self.load_image_folder()
-    
+
     def browse_input_folder(self):
         folder = filedialog.askdirectory(initialdir=self.input_folder.get())
         if folder:
@@ -388,28 +437,37 @@ class ImageToolsApp:
         self.description_text.delete("1.0", tk.END)
         self.season_entry.delete(0, tk.END)
         self.categories_entry.delete(0, tk.END)
+        self.camera_var.set('')
+        self.lens_var.set('')
+        
+        # Set default dates to today
+        today = datetime.now().strftime("%Y-%m-%d")
+        self.udate_entry.delete(0, tk.END)
+        self.udate_entry.insert(0, today)
+        self.tdate_entry.delete(0, tk.END)
+        self.tdate_entry.insert(0, today)
+        
         self.featured_var.set(False)
         
         # Load image preview with correct orientation
         try:
             with Image.open(filepath) as img:
+                img = ImageOps.exif_transpose(img)
                 self.original_width, self.original_height = img.size
                 self.dimensions = f"{self.original_width}x{self.original_height}"
-
-            img = Image.open(filepath)
-            img = ImageOps.exif_transpose(img)  # Apply EXIF orientation
-            img.thumbnail((400, 400), Image.Resampling.LANCZOS)
-            photo = ImageTk.PhotoImage(img)
-            
-            self.image_label.config(image=photo)
-            self.image_label.image = photo
-            
-            # Try to load existing metadata
-            self.load_existing_metadata(file_id)
+                
+                img.thumbnail((400, 400), Image.Resampling.LANCZOS)
+                photo = ImageTk.PhotoImage(img)
+                
+                self.image_label.config(image=photo)
+                self.image_label.image = photo
+                
+                # Try to load existing metadata
+                self.load_existing_metadata(file_id)
         except Exception as e:
             self.image_label.config(text=f"Cannot load image: {str(e)}")
-            self.dimensions = "0x0"  # Fallback dimensions
-    
+            self.dimensions = "0x0"
+
     def load_existing_metadata(self, file_id):
         """Try to load existing metadata from output.json"""
         output_path = os.path.join(self.folder_var.get(), "output.json")
@@ -423,7 +481,7 @@ class ImageToolsApp:
                             self.description_text.insert("1.0", item.get("description", ""))
                             self.season_entry.insert(0, item.get("season", ""))
                             
-                            # Set categories
+                            # Set categories (indices)
                             cat_indices = []
                             for cat in item.get("tags", []):
                                 for i, key in enumerate(self.categories.keys()):
@@ -431,11 +489,21 @@ class ImageToolsApp:
                                         cat_indices.append(str(i))
                             self.categories_entry.insert(0, ",".join(cat_indices))
                             
+                            # Camera and lens
+                            self.camera_var.set(item.get("camera", self.camera_options[0]))
+                            self.lens_var.set(item.get("lens", self.lens_options[0]))
+                            
+                            # Dates
+                            self.udate_entry.delete(0, tk.END)
+                            self.udate_entry.insert(0, item.get("udate", datetime.now().strftime("%Y-%m-%d")))
+                            self.tdate_entry.delete(0, tk.END)
+                            self.tdate_entry.insert(0, item.get("tdate", datetime.now().strftime("%Y-%m-%d")))
+                            
                             self.featured_var.set(item.get("featured", False))
                             break
             except:
                 pass
-    
+
     def prev_image(self):
         if self.current_image_index > 0:
             self.save_current_metadata()
@@ -458,12 +526,12 @@ class ImageToolsApp:
         description = self.description_text.get("1.0", tk.END).strip()
         season = self.season_entry.get()
         
-        # Process categories
+        # Process categories (tags)
         selected_categories = []
         indices_str = self.categories_entry.get()
         if indices_str:
             try:
-                indices = [int(i.strip()) for i in indices_str.split(",")]
+                indices = [int(i.strip()) for i in indices_str.split(",") if i.strip()]
                 category_keys = list(self.categories.keys())
                 for i in indices:
                     if 0 <= i < len(category_keys):
@@ -471,8 +539,13 @@ class ImageToolsApp:
             except ValueError:
                 pass
         
-        # Get current dates
-        today = datetime.now().strftime("%Y-%m-%d")
+        # Get camera and lens
+        camera = self.camera_var.get() or self.camera_options[0]
+        lens = self.lens_var.get() or self.lens_options[0]
+        
+        # Get dates
+        udate = self.udate_entry.get().strip()
+        tdate = self.tdate_entry.get().strip()
         
         # Create metadata item
         item = {
@@ -481,11 +554,11 @@ class ImageToolsApp:
             "description": description,
             "season": season,
             "tags": selected_categories,
-            "camera": self.default_camera,
-            "lens": self.default_lens,
+            "camera": camera,
+            "lens": lens,
             "dimension": self.dimensions,
-            "udate": today,
-            "tdate": today,
+            "udate": udate,
+            "tdate": tdate,
             "featured": self.featured_var.get()
         }
         
