@@ -63,13 +63,13 @@ export default function Series() {
         <h1 className="text-3xl md:text-4xl font-bold mb-4">
           {isLoading ? <Skeleton width={150} className="mx-auto" /> : 'Сезоны'}
         </h1>
-        <p className="text-gray-400 max-w-2xl mx-auto">
+        {/*<p className="text-gray-400 max-w-2xl mx-auto">
           {isLoading ? (
             <Skeleton count={2} className="max-w-2xl mx-auto" />
           ) : (
-            'Collections organized by seasons, each representing a cohesive body of work with a distinct narrative and visual language.'
+            'Такими были мои фотографии в разные сезоны.'
           )}
-        </p>
+        </p>*/}
       </div>
 
       {isLoading ? (
@@ -131,7 +131,7 @@ export default function Series() {
                   href={`/gallery?season=${season}`} 
                   className="inline-block px-6 py-3 border border-gray-700 rounded-lg hover:border-gray-500 transition-colors"
                 >
-                  View Full Collection
+                  Открыть все
                 </Link>
               </div>
             </section>
@@ -139,7 +139,7 @@ export default function Series() {
         </div>
       )}
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-16">
+      {/*<div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-16">
         <div className="bg-gray-800 p-8 rounded-lg">
           <h3 className="text-xl font-semibold mb-4 font-geist">
             {isLoading ? <Skeleton width={180} /> : 'Seasonal Approach'}
@@ -171,7 +171,7 @@ export default function Series() {
             )}
           </p>
         </div>
-      </div>
+      </div>*/}
     </div>
   );
 }

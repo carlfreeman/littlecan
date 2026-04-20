@@ -16,6 +16,8 @@ function MyApp({ Component, pageProps }: AppProps) {
       </main>
       <footer className="py-6 border-t border-gray-800">
         <div className="container mx-auto px-4 text-center text-gray-500 text-sm">
+          <p>marco.litvak@yandex.ru</p>
+          <p>+7 964 500 28 05</p>
           © {new Date().getFullYear()} Mark Litvak. All rights reserved.
         </div>
       </footer>
