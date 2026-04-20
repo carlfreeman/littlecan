@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const tags = ['featured', 'nature', 'urban', 'wildlife',  'portrait', 'conceptual', 'monochrome', 'macro', 'night', 'candid'];
+const tags = ['Featured', 'Nature', 'Urban', 'Wildlife', 'Portrait', 'Conceptual', 'Monochrome', 'Macro', 'Night', 'Candid'];
 
 const TagFilter = ({
   onFilterChange,
