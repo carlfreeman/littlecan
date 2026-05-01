@@ -92,12 +92,12 @@ export default function About() {
             <div className="bg-gray-800 p-6 rounded-lg">
               <h3 className="text-xl font-semibold mb-4 font-geist">Стек</h3>
               <ul className="space-y-2">
-                <li>Canon EOS 1100D</li>
+                <li>Canon EOS 650D</li>
                 <li>Sony A3500</li>
                 <li></li>
-                <li>Canon 18-55mm f/3.5-5.6</li>
                 <li>Tamron 18-270mm F/3.5-6.3 Di II VC PZD</li>
-                <li>Sony E 18-50mm F4-5.6</li>
+                <li>Helios 2/58</li>
+                <li>Юпитер-11 4/135</li>
               </ul>
             </div>
           </div>
